@@ -12,12 +12,7 @@ let recipeName = document.getElementById('recipeName');
 
 let recipeIng = document.getElementById('recipeIng');
 
-function Recipe(name, ingredients, details, fileExtension = 'jpeg') {
-  this.name = name;
-  this.ingredients = ingredients;
-  this.details = details;
-  this.fileExtension = fileExtension;
-  this.src = `img/${name}.${fileExtension}`;
+
   recipeArray.push(this);
 }
 
@@ -33,63 +28,47 @@ function handleClick(event) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
 
-  let heading = document.createElement('heading');
+  
+
+  let heading = document.createElement('h2');
   heading.textContent = clickRecipe.name;
   selectorRecipe.appendChild(heading);
-
-  let ingredientHeading = document.createElement('ingredientHeading');
-  ingredientHeading.innerHTML = '<br />' +" Ingredients";
-  heading.appendChild(ingredientHeading);
-
-
+  
   let imgElem = document.createElement('img');
   imgElem.src = clickRecipe.img;
   selectorRecipe.appendChild(imgElem);
+ 
+
+  let prepTime = document.createElement('h4');
+  prepTime.innerHTML = 'prep-time';
+  selectorRecipe.appendChild(prepTime);
+
+  let ingredientHeading = document.createElement('h3');
+  ingredientHeading.innerHTML = "Ingredients";
+  ingredientHeading.style.backgroundColor="blue";
+  selectorRecipe.appendChild(ingredientHeading);
+
+
+ 
+  let ulElem = document.createElement('ul');
+  selectorRecipe.appendChild(ulElem);
 
   for(let i =0; i<clickRecipe.ingredients.length;i++){
     let liElem = document.createElement('li');
     liElem.textContent = clickRecipe.ingredients[i];
-    selectorRecipe.appendChild(liElem);
+    ulElem.appendChild(liElem);
   }
+
+  let recipeDescription = document.createElement('h3');
+  recipeDescription.innerHTML = "Procedure";
+  recipeContainer.style.backgroundColor="green";
+  selectorRecipe.appendChild(recipeDescription);
+
+
+  let pElem = document.createElement('p-description');
+  pElem.textContent = clickRecipe.description;
+  pElem.style.backgroundColor="red";
+  selectorRecipe.appendChild(pElem);
 }
 
 
-let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Breadcrumbs', 'Salt', 'Pepper'] 'img/macNcheese.jpeg');
-
-let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'],'img/cheese-burger.jpeg');
-
-if
-
-function renderList() {
-  for (let i = 0; i < recipeArray.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.id = i;
-    liElem.textContent = recipeArray[i].name;
-    recipeIng.appendChild(liElem);
-  }
-}
-
-// let allMeat = new Food 'beef', 'chicken', 'egg', 'beans', 'steak']
-// let allElse = new Food('lettuce', 'onion', 'tomato', 'peppers', 'lime', 'lemon', 'corn', 'butter']
-// let allItems = ['noodles', 'breadcrumbs', 'buns', 'tortilla', 'rice']
-// let allSpices = ['salt', 'pepper']
-
-// let food = [allMeat, allElse, allItems, allSpices];
-
-// for (let i = o; i < food.length; i++) {
-//   for (let j = 0; < food[i].length; j++) {
-
-//   }
-
-}
-
-
-for (let i = 0; )
-
-
-
-
-
-renderList();
-
-recipeIng.addEventListener('click', handleClick);
