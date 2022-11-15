@@ -1,6 +1,8 @@
 'use strict';
-
+// Global Varible
 let recipeArray = [];
+
+// DOM REFERENCES
 
 let recipeContainer = document.getElementById('recipeContainer');
 
@@ -14,6 +16,7 @@ function Recipe(name, ingredients, fileExtension) {
   this.name = name;
   this.ingredients = ingredients;
   this.imagePath = `img/${name}.${fileExtension}`;
+  recipeArray.push(this);
 }
 
 Recipe.prototype.render = function () {
@@ -22,12 +25,33 @@ Recipe.prototype.render = function () {
   let liElem = document.createElement('li');
   liElem.textContent = this.name;
   ulElem.appendChild(liElem);
+};
 
 
-  recipeArray.push(this);
+// EVENT HANDLER
+function handleClick(event) {
+  console.log(event.target.id);
+  let index = event.target.id;
+  let clickRecipe = recipeArray[index];
+  console.log(clickRecipe);
+  //selectorRecipe.textContent = event.target.clickRecipe[index].ingredients;
+  clickRecipe.textContent = 'ingridents';
 }
 
-// push
-let test = new Recipe('hello');
 
-test.render();
+
+let mac = new Recipe('Mac & Cheese', ['Noodle', 'Cheese', 'Milk', 'Butter']);
+let burger = new Recipe('CheeseBurger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce']);
+
+
+function renderList() {
+  for (let i = 0; i < recipeArray.length; i++) {
+    let liElem = document.createElement('li');
+    liElem.id = i;
+    liElem.textContent = recipeArray[i].name;
+    recipeIng.appendChild(liElem);
+  }
+}
+renderList();
+recipeIng.addEventListener('click', handleClick);
+// 
