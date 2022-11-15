@@ -12,7 +12,9 @@ let recipeName = document.getElementById('recipeName');
 
 let recipeIng = document.getElementById('recipeIng');
 
-function Recipe(name, ingredients, img,prepTime, description) {
+
+
+function Recipe(name, ingredients, img,prepTime, cookTime,description) {
   this.name = name;
   this.ingredients = ingredients;
 
@@ -20,16 +22,18 @@ function Recipe(name, ingredients, img,prepTime, description) {
   this.img = img ;
   this.description = description;
   this.prepTime = prepTime;
+  this.cookTime = cookTime;
+  this.likes = 0;
   recipeArray.push(this);
 }
 
-
+let clickRecipe;
 // EVENT HANDLER
 function handleClick(event) {
-
   let index = event.target.id;
-  let clickRecipe = recipeArray[index];
-
+  console.log(index);
+ 
+  clickRecipe = recipeArray[index];
 
   while (selectorRecipe.firstChild) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
@@ -54,12 +58,18 @@ function handleClick(event) {
  
 
   let prepTime = document.createElement('h4');
-  prepTime.innerHTML = 'prep-time';
+  prepTime.innerHTML = 'Prep Time: ' + clickRecipe.prepTime;
   selectorRecipe.appendChild(prepTime);
+
+
+  let cookTime = document.createElement('h4');
+  cookTime.innerHTML = 'Cook Time: ' + clickRecipe.cookTime;
+  selectorRecipe.appendChild(cookTime);
+
 
   let ingredientHeading = document.createElement('h3');
   ingredientHeading.innerHTML = "Ingredients";
-  ingredientHeading.style.backgroundColor="blue";
+ 
   selectorRecipe.appendChild(ingredientHeading);
 
 
@@ -98,21 +108,23 @@ function createForm() {
 
   let recipeDescription = document.createElement('h3');
   recipeDescription.innerHTML = "Procedure";
-  recipeContainer.style.backgroundColor="green";
   selectorRecipe.appendChild(recipeDescription);
 
 
   let pElem = document.createElement('p-description');
   pElem.textContent = clickRecipe.description;
-  pElem.style.backgroundColor="red";
   selectorRecipe.appendChild(pElem);
+
+  // likeIncrement(clickRecipe);
+
 }
 
 
-let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg','25 min','Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
+let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg','10 min','45 min','Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
 
 
-let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg');
+let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'],'img/cheese-burger.jpeg','15 min','40 min');
+
 
 
 function renderList() {
@@ -128,5 +140,31 @@ renderList();
 
 recipeIng.addEventListener('click', handleClick);
 
+
+
+
+
+const getLike = document.querySelector('.like');
+const getLikeNum = document.querySelector('.likeNum');
+
+
+
+
+function likeIncrement (){
+  console.log(clickRecipe);
+  clickRecipe.likes ++;
+  getLikeNum.innerHTML = `${clickRecipe.likes}`;
+}
+
+getLike.addEventListener('click',likeIncrement);
+
+let food = localStorage.getItem('myFood');
+
+
+function saveFood(){
+  let foodString = JSON.stringify(recipeArray);
+  localStorage.setItem('food',foodString );
+
+}
 
 
