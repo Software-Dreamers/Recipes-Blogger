@@ -27,7 +27,7 @@ Recipe.prototype.render = function () {
   recipeArray.push(this);
 }
 
-
+// push
 let test = new Recipe('hello');
 
 test.render();
