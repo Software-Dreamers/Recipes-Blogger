@@ -15,7 +15,7 @@ let recipeIng = document.getElementById('recipeIng');
 function Recipe(name, ingredients, img) {
   this.name = name;
   this.ingredients = ingredients;
-  this.img = img ;
+  this.img = img;
   recipeArray.push(this);
 }
 
@@ -27,7 +27,7 @@ function handleClick(event) {
   let clickRecipe = recipeArray[index];
 
 
-  while(selectorRecipe.firstChild){
+  while (selectorRecipe.firstChild) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
 
@@ -36,7 +36,7 @@ function handleClick(event) {
   selectorRecipe.appendChild(heading);
 
   let ingredientHeading = document.createElement('ingredientHeading');
-  ingredientHeading.innerHTML = '<br />' +" Ingredients";
+  ingredientHeading.innerHTML = '<br />' + " Ingredients";
   heading.appendChild(ingredientHeading);
 
 
@@ -44,17 +44,35 @@ function handleClick(event) {
   imgElem.src = clickRecipe.img;
   selectorRecipe.appendChild(imgElem);
 
-  for(let i =0; i<clickRecipe.ingredients.length;i++){
+  for (let i = 0; i < clickRecipe.ingredients.length; i++) {
     let liElem = document.createElement('li');
     liElem.textContent = clickRecipe.ingredients[i];
     selectorRecipe.appendChild(liElem);
   }
+  createForm();
+}
+function createForm() {
+  let container = document.getElementById('formContainer');
+  let form = document.createElement('FORM');
+  let commentBox = document.createElement('input');
+  commentBox.setAttribute('type', 'text');
+  commentBox.setAttribute('id', 'commentBox');
+  commentBox.setAttribute('placeholder', 'Enter Comment');
+  form.appendChild(commentBox);
+  let submit = document.createElement('button');
+  submit.setAttribute('type', 'submit');
+  submit.setAttribute('name', 'cmtBtn');
+  form.appendChild(submit);
+  container.appendChild(form);
+  submit.addEventListener('click', function (event) {
+    event.preventDefault();
+  });
 }
 
 
-let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg');
+let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg');
 
-let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'],'img/cheese-burger.jpeg');
+let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg');
 
 
 function renderList() {
@@ -69,3 +87,6 @@ function renderList() {
 renderList();
 
 recipeIng.addEventListener('click', handleClick);
+
+
+
