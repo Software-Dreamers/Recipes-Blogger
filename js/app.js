@@ -17,6 +17,8 @@ let recipeIng = document.getElementById('recipeIng');
 function Recipe(name, ingredients, img,prepTime, cookTime,description) {
   this.name = name;
   this.ingredients = ingredients;
+
+ 
   this.img = img ;
   this.description = description;
   this.prepTime = prepTime;
@@ -33,7 +35,7 @@ function handleClick(event) {
  
   clickRecipe = recipeArray[index];
 
-  while(selectorRecipe.firstChild){
+  while (selectorRecipe.firstChild) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
 
@@ -42,6 +44,13 @@ function handleClick(event) {
   let heading = document.createElement('h2');
   heading.textContent = clickRecipe.name;
   selectorRecipe.appendChild(heading);
+
+
+  let ingredientHeading = document.createElement('ingredientHeading');
+  ingredientHeading.innerHTML = '<br />' + " Ingredients";
+  heading.appendChild(ingredientHeading);
+
+
   
   let imgElem = document.createElement('img');
   imgElem.src = clickRecipe.img;
@@ -68,11 +77,34 @@ function handleClick(event) {
   let ulElem = document.createElement('ul');
   selectorRecipe.appendChild(ulElem);
 
-  for(let i =0; i<clickRecipe.ingredients.length;i++){
+  for (let i = 0; i < clickRecipe.ingredients.length; i++) {
     let liElem = document.createElement('li');
     liElem.textContent = clickRecipe.ingredients[i];
     ulElem.appendChild(liElem);
   }
+
+  createForm();
+}
+function createForm() {
+  let container = document.getElementById('formContainer');
+  let form = document.createElement('FORM');
+  let commentBox = document.createElement('input');
+  commentBox.setAttribute('type', 'text');
+  commentBox.setAttribute('id', 'commentBox');
+  commentBox.setAttribute('placeholder', 'Enter Comment');
+  form.appendChild(commentBox);
+  let submit = document.createElement('button');
+  submit.setAttribute('type', 'submit');
+  submit.setAttribute('name', 'cmtBtn');
+  form.appendChild(submit);
+  container.appendChild(form);
+  submit.addEventListener('click', function (event) {
+    event.preventDefault();
+  });
+}
+
+
+
 
   let recipeDescription = document.createElement('h3');
   recipeDescription.innerHTML = "Procedure";
@@ -90,7 +122,9 @@ function handleClick(event) {
 
 let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg','10 min','45 min','Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
 
+
 let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'],'img/cheese-burger.jpeg','15 min','40 min');
+
 
 
 function renderList() {
@@ -105,6 +139,7 @@ function renderList() {
 renderList();
 
 recipeIng.addEventListener('click', handleClick);
+
 
 
 
@@ -131,4 +166,5 @@ function saveFood(){
   localStorage.setItem('food',foodString );
 
 }
+
 
