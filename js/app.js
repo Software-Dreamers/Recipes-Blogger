@@ -12,10 +12,14 @@ let recipeName = document.getElementById('recipeName');
 
 let recipeIng = document.getElementById('recipeIng');
 
-function Recipe(name, ingredients, img) {
+function Recipe(name, ingredients, img,prepTime, description) {
   this.name = name;
   this.ingredients = ingredients;
-  this.img = img;
+
+ 
+  this.img = img ;
+  this.description = description;
+  this.prepTime = prepTime;
   recipeArray.push(this);
 }
 
@@ -31,24 +35,44 @@ function handleClick(event) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
 
-  let heading = document.createElement('heading');
+  
+
+  let heading = document.createElement('h2');
   heading.textContent = clickRecipe.name;
   selectorRecipe.appendChild(heading);
+
 
   let ingredientHeading = document.createElement('ingredientHeading');
   ingredientHeading.innerHTML = '<br />' + " Ingredients";
   heading.appendChild(ingredientHeading);
 
 
+  
   let imgElem = document.createElement('img');
   imgElem.src = clickRecipe.img;
   selectorRecipe.appendChild(imgElem);
+ 
+
+  let prepTime = document.createElement('h4');
+  prepTime.innerHTML = 'prep-time';
+  selectorRecipe.appendChild(prepTime);
+
+  let ingredientHeading = document.createElement('h3');
+  ingredientHeading.innerHTML = "Ingredients";
+  ingredientHeading.style.backgroundColor="blue";
+  selectorRecipe.appendChild(ingredientHeading);
+
+
+ 
+  let ulElem = document.createElement('ul');
+  selectorRecipe.appendChild(ulElem);
 
   for (let i = 0; i < clickRecipe.ingredients.length; i++) {
     let liElem = document.createElement('li');
     liElem.textContent = clickRecipe.ingredients[i];
-    selectorRecipe.appendChild(liElem);
+    ulElem.appendChild(liElem);
   }
+
   createForm();
 }
 function createForm() {
@@ -70,7 +94,23 @@ function createForm() {
 }
 
 
-let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg');
+
+
+  let recipeDescription = document.createElement('h3');
+  recipeDescription.innerHTML = "Procedure";
+  recipeContainer.style.backgroundColor="green";
+  selectorRecipe.appendChild(recipeDescription);
+
+
+  let pElem = document.createElement('p-description');
+  pElem.textContent = clickRecipe.description;
+  pElem.style.backgroundColor="red";
+  selectorRecipe.appendChild(pElem);
+}
+
+
+let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg','25 min','Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
+
 
 let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg');
 
