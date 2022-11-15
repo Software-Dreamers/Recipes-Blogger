@@ -12,36 +12,49 @@ let recipeName = document.getElementById('recipeName');
 
 let recipeIng = document.getElementById('recipeIng');
 
-function Recipe(name, ingredients, fileExtension) {
+function Recipe(name, ingredients, img) {
   this.name = name;
   this.ingredients = ingredients;
-  this.imagePath = `img/${name}.${fileExtension}`;
+  this.img = img ;
   recipeArray.push(this);
 }
-
-Recipe.prototype.render = function () {
-  let ulElem = document.createElement('ul');
-  recipeContainer.appendChild(ulElem);
-  let liElem = document.createElement('li');
-  liElem.textContent = this.name;
-  ulElem.appendChild(liElem);
-};
 
 
 // EVENT HANDLER
 function handleClick(event) {
-  console.log(event.target.id);
+
   let index = event.target.id;
   let clickRecipe = recipeArray[index];
-  console.log(clickRecipe);
-  //selectorRecipe.textContent = event.target.clickRecipe[index].ingredients;
-  clickRecipe.textContent = 'ingridents';
+
+
+  while(selectorRecipe.firstChild){
+    selectorRecipe.removeChild(selectorRecipe.firstChild);
+  }
+
+  let heading = document.createElement('heading');
+  heading.textContent = clickRecipe.name;
+  selectorRecipe.appendChild(heading);
+
+  let ingredientHeading = document.createElement('ingredientHeading');
+  ingredientHeading.innerHTML = '<br />' +" Ingredients";
+  heading.appendChild(ingredientHeading);
+
+
+  let imgElem = document.createElement('img');
+  imgElem.src = clickRecipe.img;
+  selectorRecipe.appendChild(imgElem);
+
+  for(let i =0; i<clickRecipe.ingredients.length;i++){
+    let liElem = document.createElement('li');
+    liElem.textContent = clickRecipe.ingredients[i];
+    selectorRecipe.appendChild(liElem);
+  }
 }
 
 
+let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter','Salt'],'img/macNcheese.jpeg');
 
-let mac = new Recipe('Mac & Cheese', ['Noodle', 'Cheese', 'Milk', 'Butter']);
-let burger = new Recipe('CheeseBurger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce']);
+let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'],'img/cheese-burger.jpeg');
 
 
 function renderList() {
@@ -52,5 +65,7 @@ function renderList() {
     recipeIng.appendChild(liElem);
   }
 }
+
 renderList();
+
 recipeIng.addEventListener('click', handleClick);
