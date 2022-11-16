@@ -94,10 +94,19 @@ function handleClick(event) {
     submit.setAttribute('name', 'cmtBtn');
     form.appendChild(submit);
     container.appendChild(form);
+
+
     submit.addEventListener('click', function (event) {
+      let li = document.createElement('li');
+      let text = document.createTextNode(commentBox.value);
+      li.appendChild(text);
+      document.getElementById('commentList').appendChild(li);
       event.preventDefault();
+      commentBox.value = '';
+
     });
   }
+
 
 
 
