@@ -7,8 +7,7 @@ let selectedRecipe;
 
 let selectorRecipe = document.getElementById('selectorRecipe');
 let recipeIng = document.getElementById('recipeIng');
-// const likeButton = document.querySelector('.btn');
-const likeButton = document.getElementById('like-button');
+const likeButton = document.querySelector('.btn');
 
 function Recipe(name, ingredients, img, prepTime, cookTime, description) {
 
@@ -24,12 +23,10 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description) {
 
 }
 
+
 likeButton.addEventListener('click', () => {
-
   likeButton.classList.toggle('liked');
-
   selectedRecipe.isClicked = !selectedRecipe.isClicked;
-
   let stringifiedRecipe = JSON.stringify(recipeArray);
 
   localStorage.setItem('favRecipies', stringifiedRecipe);
@@ -48,26 +45,19 @@ function handleRecipeClick(event) {
   selectedRecipe = recipeArray[index];
 
 
-
-
-  if (recipeArray[index].isClicked){
-    likeButton.classList.toggle('liked');
-  }
-  else{
-    likeButton.classList.remove('liked');
-  }
+  likeButton.classList.remove('liked');
 
   while (selectorRecipe.firstChild) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
-  
+
   let heading = document.createElement('h2');
   heading.textContent = selectedRecipe.name;
   selectorRecipe.appendChild(heading);
 
 
   let ingredientHeading = document.createElement('ingredientHeading');
-  ingredientHeading.innerHTML = 'Ingredients';
+  ingredientHeading.innerHTML = '<br />' + 'Ingredients';
   heading.appendChild(ingredientHeading);
 
 
@@ -140,12 +130,14 @@ function handleRecipeClick(event) {
 }
 
 
-let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg', '10 min', '45 min', 'Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
 
 
-let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min');
+let chickenQuesadilla = new Recipe('Chicken Quesadilla', ['1 tbsp. extra-virgin olive oil', '2 peppers, thinly sliced', '1/2 onion','450 g boneless skinless chicken breasts','1/2 tsp. chilli powder','1/2 tsp. dried oregano','4 medium flour tortillas','200 g grated cheddar','1 avocado, sliced','Sour cream, for serving'],'img/chickenQuesadilla.jpg','10 min','25 min','In a large skillet over medium-high heat, heat olive oil. Add peppers and onion and season with salt and pepper. Cook until soft, 5 minutes. Transfer to a plate.Heat remaining tablespoon vegetable oil over medium-high heat. Season chicken with spices, salt, and pepper and cook, stirring occasionally, until golden and cooked through, 8 minutes. Transfer to a plate.Add 1 flour tortilla to skillet and top half of the tortilla with a heavy sprinkling of both cheeses, cooked chicken mixture,pepper-onion mixture, a few slices of avocado, and spring onions.Fold the other half of the tortilla over and cook.')
 
-let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min','Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.');
+let casserole = new Recipe('Casserole',['1 pound lean ground beef','2 cups salsa','1 (16 ounce) can chili beans, drained','3 cups tortilla chips, crushed','2 cups sour cream','1 (2 ounce) can sliced black olives, drained','½ cup chopped green onion','½ cup chopped fresh tomato','2 cups shredded Cheddar cheese'],'img/casserole.jpeg','15 min', '1 hour','Preheat the oven to 350 degrees F (175 degrees C). Spray a 9x13-baking dish with cooking spray.Heat a large skillet over medium-high heat. Cook and stir ground beef in the hot skillet until browned and crumbly, 8 to 10 minutes.Stir in salsa, reduce heat, and simmer until liquid is absorbed, about 20 minutes. Stir in beans; cook until heated through.Spread crushed tortilla chips over the bottom of the baking dish; spoon beef mixture on top. Spread sour cream over beef, then sprinkle olives, green onion, and tomatoes on top. Cover with Cheddar cheese.Bake in the preheated oven until hot and bubbly, about 30 minutes.');
+
+let chips = new Recipe('Baked Tortilla Chips',['1 (12 ounce) package corn tortillas','3 tablespoons lime juice','1 tablespoon vegetable oil','1 teaspoon ground cumin','1 teaspoon chili powder','1 teaspoon salt'],'img/chips.jpeg','10 min','15min','Preheat oven to 350 degrees F (175 degrees C).Stack tortillas in layers of 5 or 6. Cut through each stack to make 8 wedges. Arrange wedges in a single layer on rimmed baking sheets.Combine lime juice and oil in a spray bottle or mister; shake until well mixed. Spray the tops of the tortilla wedges until slightly moist.Combine cumin, chili powder, and salt in a small bowl; sprinkle mixture over the chips.Bake in the preheated oven for 7 minutes.Remove from the oven. Flip chips, then mist and season again.Return to the oven, rotating the pans and switching racks. Bake, checking often to ensure they do not burn, until chips are lightly browned and crisp, 5 to 8 more minutes.Remove from the oven and cool slightly before serving.')
+
 
 // Load favorites
 let retrieveRecipe = localStorage.getItem('favRecipies');
@@ -155,21 +147,15 @@ let parsedRecipe = JSON.parse(retrieveRecipe);
 // parsedRecipe
 
 
-
-
 function renderList() {
   for (let i = 0; i < recipeArray.length; i++) {
     let liElem = document.createElement('li');
     liElem.id = i;
     liElem.textContent = recipeArray[i].name;
     recipeIng.appendChild(liElem);
-    for(let j=0; j<parsedRecipe.length; j++){
-    if(parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked){
-     recipeArray[i].isClicked = true;
-      
-    }
   }
-}
+ 
+
 }
 
 renderList();
