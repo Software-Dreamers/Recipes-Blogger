@@ -1,95 +1,66 @@
 'use strict';
 // Global Varible
 let recipeArray = [];
-let selectedRecipe;
 
 // DOM REFERENCES
 let notesContainer = document.getElementById('formContainer');
 
+let recipeContainer = document.getElementById('recipeContainer');
+
 let selectorRecipe = document.getElementById('selectorRecipe');
+
+let recipeName = document.getElementById('recipeName');
+
 let recipeIng = document.getElementById('recipeIng');
-
-// const likeButton = document.querySelector('.btn');
-const likeButton = document.getElementById('like-button');
-
 
 let submit = document.createElement('button');
 
-
 function Recipe(name, ingredients, img, prepTime, cookTime, description) {
-
   this.name = name;
   this.ingredients = ingredients;
+
+
   this.img = img;
   this.description = description;
   this.prepTime = prepTime;
   this.cookTime = cookTime;
-  this.isClicked = false;
-
+  this.likes = 0;
   recipeArray.push(this);
-
 }
 
-likeButton.addEventListener('click', () => {
-
-  likeButton.classList.toggle('liked');
-
-  selectedRecipe.isClicked = !selectedRecipe.isClicked;
-
-  let stringifiedRecipe = JSON.stringify(recipeArray);
-
-  localStorage.setItem('favRecipies', stringifiedRecipe);
-});
-
-
+let clickRecipe;
 // EVENT HANDLER
-
-function handleRecipeClick(event) {
-
-  // eslint-disable-next-line no-const-assign
-
+function handleClick(event) {
   let index = event.target.id;
   // console.log(index);
 
-  selectedRecipe = recipeArray[index];
+  clickRecipe = recipeArray[index];
 
-
-
-
-
-  if (recipeArray[index].isClicked){
-    likeButton.classList.toggle('liked');
-  }
-  else{
-    likeButton.classList.remove('liked');
+  while (selectorRecipe.firstChild) {
+    selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
 
   notesContainer.innerHTML = '';
   document.getElementById('commentList').innerHTML = '';
 
-
-  while (selectorRecipe.firstChild) {
-    selectorRecipe.removeChild(selectorRecipe.firstChild);
-  }
-  
   let heading = document.createElement('h2');
-  heading.textContent = selectedRecipe.name;
+  heading.textContent = clickRecipe.name;
   selectorRecipe.appendChild(heading);
 
   let ingredientHeading = document.createElement('ingredientHeading');
-  ingredientHeading.innerHTML = 'Ingredients';
+  ingredientHeading.innerHTML = '<br />' + 'Ingredients';
   heading.appendChild(ingredientHeading);
 
   let imgElem = document.createElement('img');
-  imgElem.src = selectedRecipe.img;
+  imgElem.src = clickRecipe.img;
   selectorRecipe.appendChild(imgElem);
 
   let prepTime = document.createElement('h4');
-  prepTime.innerHTML = 'Prep Time: ' + selectedRecipe.prepTime;
+  prepTime.innerHTML = 'Prep Time: ' + clickRecipe.prepTime;
   selectorRecipe.appendChild(prepTime);
 
   let cookTime = document.createElement('h4');
-  cookTime.innerHTML = 'Cook Time: ' + selectedRecipe.cookTime;
+  cookTime.innerHTML = 'Cook Time: ' + clickRecipe.cookTime;
   selectorRecipe.appendChild(cookTime);
 
   selectorRecipe.appendChild(ingredientHeading);
@@ -97,18 +68,11 @@ function handleRecipeClick(event) {
   let ulElem = document.createElement('ul');
   selectorRecipe.appendChild(ulElem);
 
-
-  for (let i = 0; i < selectedRecipe.ingredients.length; i++) {
+  for (let i = 0; i < clickRecipe.ingredients.length; i++) {
     let liElem = document.createElement('li');
-    liElem.textContent = selectedRecipe.ingredients[i];
+    liElem.textContent = clickRecipe.ingredients[i];
     ulElem.appendChild(liElem);
   }
-
-
-  let displayButton = document.createElement('button');
-  displayButton.textContent = likeButton.isClicked;
-  
-  createForm();
 
 
   createForm();
@@ -150,10 +114,7 @@ function handleRecipeClick(event) {
       return false;
     });
 
-
-
   }
-
 
 
 
@@ -163,13 +124,10 @@ function handleRecipeClick(event) {
 
 
   let pElem = document.createElement('p-description');
-  pElem.textContent = selectedRecipe.description;
+  pElem.textContent = clickRecipe.description;
   selectorRecipe.appendChild(pElem);
 
-
-  //Favorite recipe function
-  // TODO: Set the class on likeButton based on isLiked of recipe in recipeArray
- 
+  // likeIncrement(clickRecipe);
 
 }
 
@@ -180,16 +138,6 @@ let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt
 
 let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min');
 
-let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min','Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.');
-
-// Load favorites
-let retrieveRecipe = localStorage.getItem('favRecipies');
-let parsedRecipe = JSON.parse(retrieveRecipe);
-
-// TODO: Mark recipies in recipeArray as liked based on
-// parsedRecipe
-
-
 
 
 function renderList() {
@@ -198,16 +146,38 @@ function renderList() {
     liElem.id = i;
     liElem.textContent = recipeArray[i].name;
     recipeIng.appendChild(liElem);
-    for(let j=0; j<parsedRecipe.length; j++){
-    if(parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked){
-     recipeArray[i].isClicked = true;
-      
-    }
   }
 }
-}
-
 
 renderList();
 
-recipeIng.addEventListener('click', handleRecipeClick);
+recipeIng.addEventListener('click', handleClick);
+
+
+
+
+
+const getLike = document.querySelector('.like');
+const getLikeNum = document.querySelector('.likeNum');
+
+
+
+
+function likeIncrement() {
+  console.log(clickRecipe);
+  clickRecipe.likes++;
+  getLikeNum.innerHTML = `${clickRecipe.likes}`;
+}
+
+getLike.addEventListener('click', likeIncrement);
+
+let food = localStorage.getItem('myFood');
+
+
+function saveFood() {
+  let foodString = JSON.stringify(recipeArray);
+  localStorage.setItem('food', foodString);
+
+}
+
+
