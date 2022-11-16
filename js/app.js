@@ -21,6 +21,7 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description) {
   this.isClicked = false;
 
   recipeArray.push(this);
+  
 
 }
 
