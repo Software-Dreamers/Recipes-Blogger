@@ -4,11 +4,17 @@ let recipeArray = [];
 let selectedRecipe;
 
 // DOM REFERENCES
+let notesContainer = document.getElementById('formContainer');
 
 let selectorRecipe = document.getElementById('selectorRecipe');
 let recipeIng = document.getElementById('recipeIng');
+
 // const likeButton = document.querySelector('.btn');
 const likeButton = document.getElementById('like-button');
+
+
+let submit = document.createElement('button');
+
 
 function Recipe(name, ingredients, img, prepTime, cookTime, description) {
 
@@ -43,9 +49,10 @@ function handleRecipeClick(event) {
   // eslint-disable-next-line no-const-assign
 
   let index = event.target.id;
-  console.log(index);
+  // console.log(index);
 
   selectedRecipe = recipeArray[index];
+
 
 
 
@@ -57,6 +64,10 @@ function handleRecipeClick(event) {
     likeButton.classList.remove('liked');
   }
 
+  notesContainer.innerHTML = '';
+  document.getElementById('commentList').innerHTML = '';
+
+
   while (selectorRecipe.firstChild) {
     selectorRecipe.removeChild(selectorRecipe.firstChild);
   }
@@ -65,30 +76,23 @@ function handleRecipeClick(event) {
   heading.textContent = selectedRecipe.name;
   selectorRecipe.appendChild(heading);
 
-
   let ingredientHeading = document.createElement('ingredientHeading');
   ingredientHeading.innerHTML = 'Ingredients';
   heading.appendChild(ingredientHeading);
-
-
 
   let imgElem = document.createElement('img');
   imgElem.src = selectedRecipe.img;
   selectorRecipe.appendChild(imgElem);
 
-
   let prepTime = document.createElement('h4');
   prepTime.innerHTML = 'Prep Time: ' + selectedRecipe.prepTime;
   selectorRecipe.appendChild(prepTime);
-
 
   let cookTime = document.createElement('h4');
   cookTime.innerHTML = 'Cook Time: ' + selectedRecipe.cookTime;
   selectorRecipe.appendChild(cookTime);
 
-
   selectorRecipe.appendChild(ingredientHeading);
-
 
   let ulElem = document.createElement('ul');
   selectorRecipe.appendChild(ulElem);
@@ -100,28 +104,58 @@ function handleRecipeClick(event) {
     ulElem.appendChild(liElem);
   }
 
+
   let displayButton = document.createElement('button');
   displayButton.textContent = likeButton.isClicked;
   
   createForm();
 
+
+  createForm();
   function createForm() {
-    let container = document.getElementById('formContainer');
+
     let form = document.createElement('FORM');
     let commentBox = document.createElement('input');
+    let submit = document.createElement('button');
+    submit.disabled = true;
+
+    commentBox.onkeyup = function () {
+      if (commentBox.value.length > 0) {
+        submit.disabled = false;
+      }
+      else {
+        submit.disabled = true;
+      }
+    };
+
     commentBox.setAttribute('type', 'text');
     commentBox.setAttribute('id', 'commentBox');
-    commentBox.setAttribute('placeholder', 'Enter Comment');
+    commentBox.setAttribute('placeholder', 'Enter Notes');
     form.appendChild(commentBox);
-    let submit = document.createElement('button');
+
     submit.setAttribute('type', 'submit');
     submit.setAttribute('name', 'cmtBtn');
     form.appendChild(submit);
-    container.appendChild(form);
+    notesContainer.appendChild(form);
+
     submit.addEventListener('click', function (event) {
       event.preventDefault();
+      let li = document.createElement('li');
+      let text = document.createTextNode(commentBox.value);
+      li.appendChild(text);
+      document.getElementById('commentList').appendChild(li);
+      commentBox.value = '';
+      
+      submit.disabled = true;
+      return false;
     });
+
+
+
   }
+
+
+
 
   let recipeDescription = document.createElement('h3');
   recipeDescription.innerHTML = "Procedure";
@@ -138,6 +172,7 @@ function handleRecipeClick(event) {
  
 
 }
+
 
 
 let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg', '10 min', '45 min', 'Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.');
