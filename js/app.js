@@ -206,8 +206,20 @@ function renderList() {
   }
 }
 }
-
-
+// function renderList() {
+//   for (let i = 0; i < recipeArray.length; i++) {
+//     let liElem = document.createElement('li');
+//     liElem.id = i;
+//     liElem.textContent = recipeArray[i].name;
+//     recipeIng.appendChild(liElem);
+//     for(let j=0; j<parsedRecipe.length; j++){
+//     if(parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked){
+//      recipeArray[i].isClicked = true;
+      
+//     }
+//   }
+// }
+// }
 renderList();
 
 recipeIng.addEventListener('click', handleRecipeClick);
