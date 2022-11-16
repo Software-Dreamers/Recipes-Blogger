@@ -149,7 +149,6 @@ function renderList() {
   }
 }
 
-
 renderList();
 
 recipeIng.addEventListener('click', handleClick);
