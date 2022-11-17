@@ -28,18 +28,9 @@
 
 // // console.log(parsedRecipe);
 
-// function renderList() {
-//   console.log(parsedRecipe);
-//   let copyElem = document.getElementById('copy1');
-
-//   copyElem.textContent = parsedRecipe[0].description;
-
-//   // for (let i = 0; i < parsedRecipe.length; i++) {
-//   //   let liElem = document.createElement('li');
-//   //   liElem.id = i;
-//   //   liElem.textContent = parsedRecipe[i].name; 
-//   // }
-// }
+function renderFavoritesList() {
+  
+}
 
 
 
