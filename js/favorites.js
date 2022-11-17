@@ -25,8 +25,11 @@
 // let parsedRecipe = JSON.parse(retrieveRecipe);
 
 
+//let selectorRecipe = document.getElementById('selectorRecipe');
 
+// console.log(parsedRecipe);
 // // console.log(parsedRecipe);
+
 
 // function renderList() {
 //   console.log(parsedRecipe);
@@ -57,3 +60,4 @@ if (recipeIng) {
 
   recipeIng.addEventListener('click', handleRecipeClick);
 }
+
