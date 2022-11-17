@@ -43,6 +43,10 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description) {
 }
 
 if (likeButton) {
+
+  // Hide likeButton until a recipe is loaded
+  likeButton.style.visibility = 'hidden';
+
   likeButton.addEventListener('click', () => {
 
     likeButton.classList.toggle('liked');
@@ -55,25 +59,33 @@ if (likeButton) {
   });
 }
 
+function handleRecipeClick(event) {
+  selectedRecipe = recipeArray[event.target.id];
+  renderSelectedRecipe(selectedRecipe);
+}
+
 // let clickRecipe;
 // EVENT HANDLER
-function handleRecipeClick(event) {
+function renderSelectedRecipe(selectedRecipe) {
 
-  let index = event.target.id;
-  console.log(index);
+  if (likeButton) {
+    // Show the like button when a recipe is selected
+    likeButton.style.visibility = 'visible';
 
-  selectedRecipe = recipeArray[index];
-
-  if (recipeArray[index].isClicked) {
-    likeButton.classList.toggle('liked');
+    if (selectedRecipe.isClicked) {
+      likeButton.classList.toggle('liked');
+    }
+    else {
+      likeButton.classList.remove('liked');
+    }
   }
-  else {
-    likeButton.classList.remove('liked');
+  
+  if (selectorRecipe) {
+    while (selectorRecipe.firstChild) {
+      selectorRecipe.removeChild(selectorRecipe.firstChild);
+    }
   }
-
-  while (selectorRecipe.firstChild) {
-    selectorRecipe.removeChild(selectorRecipe.firstChild);
-  }
+  
 
   //todo keep this
   notesContainer.innerHTML = '';
@@ -297,6 +309,37 @@ if (recipeIng) {
   
   recipeIng.addEventListener('click', handleRecipeClick);
 }
+
+function renderFavoritesList (parentId) {
+
+  let ulElem = document.getElementById(parentId);
+
+  // Read favorites from local storage
+  let retrieveRecipe = localStorage.getItem('favRecipies');
+  let parsedRecipe = JSON.parse(retrieveRecipe);
+
+  // Add favorites as li under the parent ul
+  for (let i = 0; i < parsedRecipe.length; i++) {
+    if (parsedRecipe[i].isClicked) {
+
+      let liElem = document.createElement('li');
+      liElem.textContent = parsedRecipe[i].name;
+      
+      /* todo: uncomment following and fix
+         renderSelectedRecipe so it can render the 
+         favorite recipe properly.
+         Check favorite.html as well.
+       */
+      liElem.addEventListener('click', () => {
+        renderSelectedRecipe(parsedRecipe[i]);
+      });
+     
+
+      ulElem.appendChild(liElem);
+    }
+  }
+}
+
 
 // function renderList() {
 //   for (let i = 0; i < recipeArray.length; i++) {
