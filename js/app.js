@@ -21,7 +21,7 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description) {
   this.isClicked = false;
 
   recipeArray.push(this);
-  
+
 
 }
 
@@ -165,12 +165,11 @@ function renderList() {
     liElem.textContent = recipeArray[i].name;
     recipeIng.appendChild(liElem);
     for(let j=0; j<parsedRecipe.length; j++){
-    if(parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked){
-     recipeArray[i].isClicked = true;
-      
+      if(parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked){
+        recipeArray[i].isClicked = true;
+      }
     }
   }
-}
 }
 
 
