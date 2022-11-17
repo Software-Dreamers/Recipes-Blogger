@@ -1,7 +1,8 @@
 img{
   height: 300px;
   width:300px;
-  padding-bottom: 20px;
+  padding: 10px;
+  
 }
 
 
@@ -13,7 +14,10 @@ img{
 
 body {
   font-family: "Helvetica";
-  background: #e9e9e9
+  background: #e9e9e9;
+  min-height: 100vh;
+  max-width: 800px;
+  line-height: 3;
 }
 .container {
   width: 100vw;
@@ -41,7 +45,7 @@ body {
 
 /* ===== Project CSS ===== */
 .btn {
-  width: 200px; height: 88px;
+  width: 75px; height: 30px;
   outline: 0;
   border: 2px solid #ccc;
   color: #000;
@@ -60,8 +64,8 @@ body {
 }
 
 .btn-like {
-  padding: 1.5rem 1.5rem 1.5rem 6rem;
-  font-size: 2rem;
+  /* padding: 1.5rem 1.5rem 1.5rem 6rem; */
+  font-size: 1.6rem;
   border-radius: 10px;
   background: #fff;
   transition: 1.5s cubic-bezier(.21,.04,.26,.99);
@@ -127,3 +131,104 @@ body {
 .liked .btn-content--default {
   transform: translate(24px)
 }
+
+#mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+#recipeIng {
+  display: flex;
+justify-content: space-evenly;
+list-style: none;
+position: relative;
+left: 250px;
+bottom: 60px;
+font-size: 20pt;
+}
+
+
+p-description {
+  position: relative;
+  bottom: 600px;
+  left: 350px;
+}
+
+h3 {
+  position: relative;
+  bottom: 590px;
+  left: 350px;
+  font-weight: 600;
+}
+
+#time {
+display: inline;
+position: relative;
+right: 300px;
+top: 20px;
+}
+
+#ingHead {
+position: relative;
+top: 80px;
+right: 550px;
+}
+
+html {
+  position: relative;
+  width: 80%;
+left: 20px;
+}
+
+#selectorRecipe {
+height: 670px;
+}
+
+li {
+  position: relative;
+  top: 40px;
+}
+
+#ingHead {
+  font-size: 20pt;
+  font-weight: 600;
+  position: relative;
+}
+
+h2 {
+  font-size: 30pt;
+  font-weight: 900;
+}
+
+form {
+  position: relative;
+  bottom: 200px;
+  left: 300px;
+}
+
+#commentList {
+  position: relative;
+  bottom: 250px;
+  left: 300px;
+  list-style-type: square;
+}
+
+#like-button {
+  position: relative;
+  bottom: 538px;
+  left: 232px;
+}
+
+.kim {
+  height: 1px;
+}
+
+/* button {
+  background-color: green;
+  height: 20px;
+  width: 70px;
+  position: relative;
+  left: 5px;
+  top:2px;
+} */

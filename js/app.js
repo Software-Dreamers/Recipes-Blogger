@@ -21,6 +21,7 @@ let notesContainer = document.getElementById('formContainer');
 let recipeContainer = document.getElementById('recipeContainer');
 
 let selectorRecipe = document.getElementById('selectorRecipe');
+selectorRecipe.id = 'selectorRecipe';
 
 // let recipeName = document.getElementById('recipeName');
 
@@ -60,7 +61,7 @@ if (likeButton) {
 function handleRecipeClick(event) {
 
   let index = event.target.id;
-  console.log(index);
+  // console.log(index);
 
   selectedRecipe = recipeArray[index];
 
@@ -89,6 +90,7 @@ function handleRecipeClick(event) {
   // selectorRecipe.appendChild(heading);
 
   let ingredientHeading = document.createElement('ingredientHeading');
+  ingredientHeading.id = 'ingHead';
   ingredientHeading.innerHTML = 'Ingredients';
   heading.appendChild(ingredientHeading);
 
@@ -105,6 +107,7 @@ function handleRecipeClick(event) {
   // selectorRecipe.appendChild(imgElem);
 
   let prepTime = document.createElement('h4');
+  prepTime.id = 'time';
   prepTime.innerHTML = 'Prep Time: ' + selectedRecipe.prepTime;
   selectorRecipe.appendChild(prepTime);
 
@@ -113,6 +116,7 @@ function handleRecipeClick(event) {
   // selectorRecipe.appendChild(prepTime);
 
   let cookTime = document.createElement('h4');
+  cookTime.id = 'time';
   cookTime.innerHTML = 'Cook Time: ' + selectedRecipe.cookTime;
   selectorRecipe.appendChild(cookTime);
 
@@ -179,6 +183,7 @@ function handleRecipeClick(event) {
     form.appendChild(commentBox);
 
     submit.setAttribute('type', 'submit');
+    submit.setAttribute('id', 'submitBtn');
     submit.setAttribute('name', 'cmtBtn');
     form.appendChild(submit);
     notesContainer.appendChild(form);
@@ -191,7 +196,7 @@ function handleRecipeClick(event) {
       document.getElementById('commentList').appendChild(li);
       notesArray.push(commentBox.value);
 
-      console.log(notesObject);
+      // console.log(notesObject);
 
       notesObject[heading.textContent] = notesArray;
       let stringifiedNotes = JSON.stringify(notesObject);
