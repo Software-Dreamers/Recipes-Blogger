@@ -29,14 +29,35 @@
 
 // console.log(parsedRecipe);
 // // console.log(parsedRecipe);
-// let displayFavRecipe = document.getElementById('favRecipe');
 
-// function renderFavoritesList () {
-//   for (let i = 0; i < parsedRecipe.length; i++) {
-//     if (parsedRecipe[i].isClicked) {
-//       console.log(parsedRecipe[i].name);
-//       console.log(parsedRecipe[i].description);
-//     }
-//   }
+
+// function renderList() {
+//   console.log(parsedRecipe);
+//   let copyElem = document.getElementById('copy1');
+
+//   copyElem.textContent = parsedRecipe[0].description;
+
+//   // for (let i = 0; i < parsedRecipe.length; i++) {
+//   //   let liElem = document.createElement('li');
+//   //   liElem.id = i;
+//   //   liElem.textContent = parsedRecipe[i].name;
+//   // }
 // }
+
+let favArray = [];
+
+
+let retrieveRecipe = localStorage.getItem('favRecipies');
+let parsedRecipe = JSON.parse(retrieveRecipe);
+for (let i = 0; i < parsedRecipe.length; i++) {
+  if (parsedRecipe[i].isClicked) {
+    favArray.push(parsedRecipe[i]);
+  }
+}
+
+if (recipeIng) {
+  renderList(favArray);
+
+  recipeIng.addEventListener('click', handleRecipeClick);
+}
 

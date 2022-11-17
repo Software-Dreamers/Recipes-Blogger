@@ -30,7 +30,7 @@ let submit = document.createElement('button');
 
 const likeButton = document.getElementById('like-button');
 
-function Recipe(name, ingredients, img, prepTime, cookTime, description, isAmerican, isMexican, isThai, isVegan = false) {
+function Recipe(name, ingredients, img, prepTime, cookTime, description, isAmerican, isMexican, isThai, isVegan, isMeat) {
   this.name = name;
   this.ingredients = ingredients;
   this.notes = [];
@@ -43,6 +43,7 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description, isAmeri
   this.isMexican = isMexican;
   this.isThai = isThai;
   this.isVegan = isVegan;
+  this.isMeat = isMeat;
   recipeArray.push(this);
 }
 
@@ -72,16 +73,17 @@ function handleRecipeClick(event) {
 // EVENT HANDLER
 function renderSelectedRecipe(selectedRecipe) {
 
-  if (likeButton) {
-    // Show the like button when a recipe is selected
-    likeButton.style.visibility = 'visible';
 
-    if (selectedRecipe.isClicked) {
-      likeButton.classList.toggle('liked');
+  for (let i = 0; i < recipeArray.length; i++) {
+    if (index === recipeArray[i].name) {
+      selectedRecipe = recipeArray[i];
     }
-    else {
-      likeButton.classList.remove('liked');
-    }
+  }
+  if (selectedRecipe.isClicked) {
+    likeButton.classList.toggle('liked');
+  }
+  else {
+    likeButton.classList.remove('liked');
   }
   
   if (selectorRecipe) {
@@ -113,6 +115,7 @@ function renderSelectedRecipe(selectedRecipe) {
   // heading.appendChild(ingredientHeading);
 
   let imgElem = document.createElement('img');
+  console.log(selectedRecipe);
   imgElem.src = selectedRecipe.img;
   selectorRecipe.appendChild(imgElem);
 
@@ -267,13 +270,32 @@ function initializeAmericanCuisine() {
     
   }
 
-function initializeMexicanCuisine() {
-    let chickenQuesadilla = new Recipe('Chicken Quesadilla', ['1 tbsp. extra-virgin olive oil', '2 peppers, thinly sliced', '1/2 onion', '450 g boneless skinless chicken breasts', '1/2 tsp. chilli powder', '1/2 tsp. dried oregano', '4 medium flour tortillas', '200 g grated cheddar', '1 avocado, sliced', 'Sour cream, for serving'], 'img/chickenQuesadilla.jpg', '10 min', '25 min', 'In a large skillet over medium-high heat, heat olive oil. Add peppers and onion and season with salt and pepper. Cook until soft, 5 minutes. Transfer to a plate.Heat remaining tablespoon vegetable oil over medium-high heat. Season chicken with spices, salt, and pepper and cook, stirring occasionally, until golden and cooked through, 8 minutes. Transfer to a plate.Add 1 flour tortilla to skillet and top half of the tortilla with a heavy sprinkling of both cheeses, cooked chicken mixture,pepper-onion mixture, a few slices of avocado, and spring onions.Fold the other half of the tortilla over and cook.')
+
 
   let casserole = new Recipe('Casserole', ['1 pound lean ground beef', '2 cups salsa', '1 (16 ounce) can chili beans, drained', '3 cups tortilla chips, crushed', '2 cups sour cream', '1 (2 ounce) can sliced black olives, drained', '½ cup chopped green onion', '½ cup chopped fresh tomato', '2 cups shredded Cheddar cheese'], 'img/casserole.jpeg', '15 min', '1 hour', 'Preheat the oven to 350 degrees F (175 degrees C). Spray a 9x13-baking dish with cooking spray.Heat a large skillet over medium-high heat. Cook and stir ground beef in the hot skillet until browned and crumbly, 8 to 10 minutes.Stir in salsa, reduce heat, and simmer until liquid is absorbed, about 20 minutes. Stir in beans; cook until heated through.Spread crushed tortilla chips over the bottom of the baking dish; spoon beef mixture on top. Spread sour cream over beef, then sprinkle olives, green onion, and tomatoes on top. Cover with Cheddar cheese.Bake in the preheated oven until hot and bubbly, about 30 minutes.');
 
-  let chips = new Recipe('Baked Tortilla Chips', ['1 (12 ounce) package corn tortillas', '3 tablespoons lime juice', '1 tablespoon vegetable oil', '1 teaspoon ground cumin', '1 teaspoon chili powder', '1 teaspoon salt'], 'img/chips.jpeg', '10 min', '15min', 'Preheat oven to 350 degrees F (175 degrees C).Stack tortillas in layers of 5 or 6. Cut through each stack to make 8 wedges. Arrange wedges in a single layer on rimmed baking sheets.Combine lime juice and oil in a spray bottle or mister; shake until well mixed. Spray the tops of the tortilla wedges until slightly moist.Combine cumin, chili powder, and salt in a small bowl; sprinkle mixture over the chips.Bake in the preheated oven for 7 minutes.Remove from the oven. Flip chips, then mist and season again.Return to the oven, rotating the pans and switching racks. Bake, checking often to ensure they do not burn, until chips are lightly browned and crisp, 5 to 8 more minutes.Remove from the oven and cool slightly before serving.')
 
+let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg', '10 min', '45 min', 'Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.', true, false, false, true, false);
+
+
+let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min', 'tbd', true, false, false, false, true);
+console.log(burger);
+
+let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min', 'Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.', true, false, false, false, true);
+
+let chickenQuesadilla = new Recipe('Chicken Quesadilla', ['1 tbsp. extra-virgin olive oil', '2 peppers, thinly sliced', '1/2 onion', '450 g boneless skinless chicken breasts', '1/2 tsp. chilli powder', '1/2 tsp. dried oregano', '4 medium flour tortillas', '200 g grated cheddar', '1 avocado, sliced', 'Sour cream, for serving'], 'img/chickenQuesadilla.jpg', '10 min', '25 min', 'In a large skillet over medium-high heat, heat olive oil. Add peppers and onion and season with salt and pepper. Cook until soft, 5 min.Transfer to a plate.Heat remaining tablespoon vegetable oil over medium-high heat. Season chicken with spices, salt, and pepper and cook, stirring occasionally, until golden and cooked through, 8 min. Transfer to a plate.', false, true, false, false, true);
+
+let casserole = new Recipe('Casserole', ['1 pound lean ground beef', '2 cups salsa', '1 (16 ounce) can chili beans, drained', '3 cups tortilla chips, crushed', '2 cups sour cream', '1 (2 ounce) can sliced black olives, drained', '½ cup chopped green onion', '½ cup chopped fresh tomato', '2 cups shredded Cheddar cheese'], 'img/casserole.jpeg', '15 min', '1 hour', 'Preheat the oven to 350 degrees. Spray a 9x13-baking dish with cooking spray.Heat a large skillet over medium-high heat. Cook and stir ground beef in the hot skillet until browned and crumbly, 8 to 10 minutes.Stir in salsa, reduce heat, and simmer until liquid is absorbed, about 20 minutes. Stir in beans; cook until heated through.Spread crushed tortilla chips over the bottom of the baking dish; spoon beef mixture on top. Spread sour cream over beef, then sprinkle olives, green onion, and tomatoes on top. Cover with Cheddar cheese.Bake in the preheated oven until hot and bubbly.', false, true, false, false, true);
+
+let chips = new Recipe('Baked Tortilla Chips', ['1 (12 ounce) package corn tortillas', '3 tablespoons lime juice', '1 tablespoon vegetable oil', '1 teaspoon ground cumin', '1 teaspoon chili powder', '1 teaspoon salt'], 'img/chips.jpeg', '10 min', '15min', 'Preheat oven to 350 degrees F (175 degrees C).Stack tortillas in layers of 5 or 6. Cut through each stack to make 8 wedges. Arrange wedges in a single layer on rimmed baking sheets.Combine lime juice and oil in a spray bottle or mister; shake until well mixed. Spray the tops of the tortilla wedges until slightly moist.Combine cumin, chili powder, and salt in a small bowl; sprinkle mixture over the chips.Bake in the preheated oven for 7 minutes.Remove from the oven.Flip chips, then mist and season again.Return to the oven, rotating the pans and switching racks. Bake, checking often to ensure they do not burn, until chips are lightly browned and crisp, 5 to 8 more minutes. Wait before serving.', false, true, false, true, false);
+
+let ThaiGreenCurry = new Recipe('Thai Green Curry', ['Thai curry paste', 'rice', 'ginger', 'lemon grass paste', 'oil', 'fish sauce', 'basil leaves', 'vegetables', 'meat-optional'], 'img/Thai-Green-Curry.jpeg', '15 min', '40 min', 'Heat oil in a heavy based skillet or pot over medium high heat.Add curry paste (and garlic, ginger and lemongrass Extras, if using) and cook for 2 to 3 minutes until it mostly "dries out".Add chicken broth and coconut milk, mix to dissolve paste.Add 1 tsp fish sauce, 1 tsp sugar, no salt.Add 3 tsp fish sauce, 3 tsp sugar, 1/8 tsp salt.Add chicken, stir then lower heat to medium so it iss bubbling gently. Cook for 7 minutes.Add snow peas, cook 2 minutes until a bit softened, then stir through basil and lime juice. Sauce should have reduced but will still be a be on the thin side, not thick - that is how it should be. DO NOT keep simmering - sauce will darken.Serve curry over jasmine rice with garnishes of choice.', false, false, true, true, false);
+
+
+let padThai = new Recipe('Pad Thai', ['dry pad thai noodels', '4 garlic cloves', '1 tbsp ginger', '2 eggs', 'chicken/tofu', 'peanut oil', 'fish sauce', 'rice vineger', 'soy suace'], 'img/pad-thai.jpeg','20 mins', '35 mins', 'COOK NOODLES: Cook noodles according to package instructions (or place rice noodles in a shallow bowl or baking dish and boil enough water to cover them. COver with boiling water for 7-8 minutes, until tender, then drain.They do not have to be fully soft, just bendy and pliable).Whisk the two eggs in a bowl with a fork and add a generous, 3-finger pinch of salt. Set aside. Make the Pad Thai sauce: whisk fish sauce, rice vinegar, brown sugar and soy sauce.(see notes) in a small bowl.Set aside.Slice chicken into very thin strips and season with salt and pepper.Make a well in the center of the wok, scooting the shallot mixture to the side of the pan, add the whisked eggs.', false, false, true, false, true);
+
+
+let ThaiPineaapleRice = new Recipe('Pineapple Rice', ['1 Cilantro leaves', '2 tbsp Garlic', '2 tsp Ginger', '1/4 cup Green onions', '1/2 cup Green peas, fresh or frozen', '1 Pineapple', '1/2 cup Red bell pepper', '1/4 cup Red onion'], 'img/pinappleRice.jpeg', '15 min', '40 min', 'In a 3-quart sized saucepan, add rice and water.Bring to a boil and then turn down heat to a simmer and cover with a lid.Simmer rice for 10-12 minutes, or until all of the water is absorbed and rice is tender.Cut the pineapple in half lengthwise and carve out wedges from both sides of the core.Carefully cut out the core, to create a hollow bowl.Scrape the inside flesh with a spoon if needed after removing the core.Cut the removed pineapple flesh into ½-inch pieces, reserving 1 cup (7 ounces, 200g).In a small bowl mix together fish sauce, soy sauce, sugar, and curry powder.', false, false, true, false, true);
 
 }
 
@@ -295,33 +317,36 @@ let padThai = new Recipe('Pad Thai', ['dry pad thai noodels', '4 garlic cloves',
 let ThaiPineaapleRice = new Recipe('Pineapple rice', ['1 Cilantro leaves', '2 tbsp Garlic', '2 tsp Ginger', '1/4 cup Green onions', '1/2 cup Green peas, fresh or frozen', '1 Pineapple', '1/2 cup Red bell pepper', '1/4 cup Red onion'], 'img/pinappleRice.jpeg', '15 min', '40 min', 'In a 3-quart sized saucepan, add rice and water. Bring to a boil and then turn down heat to a simmer and cover with a lid.Simmer rice for 10 to 12 minutes, or until all of the water is absorbed and rice is tender.Cut the pineapple in half lengthwise and carve out wedges from both sides of the core.Carefully cut out the core, to create a hollow bowl. Scrape the inside flesh with a spoon if needed after removing the core.Cut the removed pineapple flesh into pieces, reserving about 1 cup 7 ounces, 200g. In a small bowl mix together fish sauce, soy sauce, sugar, and curry powder.Heat a wok or large saute pan over high heat.Add the vegetable oil, once hot add the onions, ginger, and garlic, stir-fry for 30sec.');
 }
 // Load favorites
-let retrieveRecipe = localStorage.getItem('favRecipies');
-let parsedRecipe = JSON.parse(retrieveRecipe);
+// let retrieveRecipe = localStorage.getItem('favRecipies');
+// let parsedRecipe = JSON.parse(retrieveRecipe);
 
 // TODO: Mark recipies in recipeArray as liked based on
 // parsedRecipe
 
 //adding changes
-function renderList() {
-  for (let i = 0; i < recipeArray.length; i++) {
+function renderList(allFood) {
+  for (let i = 0; i < allFood.length; i++) {
     let liElem = document.createElement('li');
-    liElem.id = i;
-    liElem.textContent = recipeArray[i].name;
+    liElem.id = allFood[i].name;
+    liElem.textContent = allFood[i].name;
     recipeIng.appendChild(liElem);
-    if (parsedRecipe) {
-      for (let j = 0; j < parsedRecipe.length; j++) {
-        if (parsedRecipe[j].name === recipeArray[i].name && parsedRecipe[j].isClicked) {
-          recipeArray[i].isClicked = true;
-        }
-      }
-    }
+    // if (parsedRecipe) {
+    //   for (let j = 0; j < parsedRecipe.length; j++) {
+    //     if (parsedRecipe[j].name === allFood[i].name && parsedRecipe[j].isClicked) {
+    //       allFood[i].isClicked = true;
+    //     }
+    //   }
+    // }
   }
 }
 
-if (recipeIng) {
-  
-  recipeIng.addEventListener('click', handleRecipeClick);
-}
+
+// if (recipeIng) {
+//   renderList();
+
+//   recipeIng.addEventListener('click', handleRecipeClick);
+// }
+
 
 function renderFavoritesList (parentId) {
 
