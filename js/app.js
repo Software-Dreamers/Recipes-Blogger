@@ -2,7 +2,18 @@
 // Global Varible
 let recipeArray = [];
 
+let notesArray = [];
+
+//used for local storge notes
+let notesObject = {};
+
+//used for localStorage and for creating recipe title.
+let heading;
+
 // DOM REFERENCES
+
+let commentBox = document.createElement('input');
+
 let notesContainer = document.getElementById('formContainer');
 
 let recipeContainer = document.getElementById('recipeContainer');
@@ -18,7 +29,7 @@ let submit = document.createElement('button');
 function Recipe(name, ingredients, img, prepTime, cookTime, description) {
   this.name = name;
   this.ingredients = ingredients;
-
+  this.notes = [];
 
   this.img = img;
   this.description = description;
@@ -34,6 +45,8 @@ function handleClick(event) {
   let index = event.target.id;
   // console.log(index);
 
+
+
   clickRecipe = recipeArray[index];
 
   while (selectorRecipe.firstChild) {
@@ -42,8 +55,8 @@ function handleClick(event) {
 
   notesContainer.innerHTML = '';
   document.getElementById('commentList').innerHTML = '';
-
-  let heading = document.createElement('h2');
+  //making heading a global variable. so we can access localStorage.
+  heading = document.createElement('h2');
   heading.textContent = clickRecipe.name;
   selectorRecipe.appendChild(heading);
 
@@ -74,6 +87,20 @@ function handleClick(event) {
     ulElem.appendChild(liElem);
   }
 
+  let retrievedNotes = localStorage.getItem('myNotes');
+  notesObject = JSON.parse(retrievedNotes) || {};
+
+  if (notesObject && notesObject[heading.textContent]) {
+    for (let i = 0; i < notesObject[heading.textContent].length; i++) {
+      let newNotes = notesObject[heading.textContent][i];
+      // console.log('test', parsedNotes[i]);
+      let li = document.createElement('li');
+      let text = document.createTextNode(newNotes);
+      li.appendChild(text);
+      document.getElementById('commentList').appendChild(li);
+      notesArray.push(newNotes);
+    }
+  }
 
   createForm();
   function createForm() {
@@ -108,12 +135,17 @@ function handleClick(event) {
       let text = document.createTextNode(commentBox.value);
       li.appendChild(text);
       document.getElementById('commentList').appendChild(li);
+      notesArray.push(commentBox.value);
+
+      console.log(notesObject);
+
+      notesObject[heading.textContent] = notesArray;
+      let stringifiedNotes = JSON.stringify(notesObject);
+      localStorage.setItem('myNotes', stringifiedNotes);
       commentBox.value = '';
-      
       submit.disabled = true;
       return false;
     });
-
   }
 
 
