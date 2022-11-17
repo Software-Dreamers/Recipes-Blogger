@@ -11,35 +11,49 @@
 </head>
 
 <body>
-  <div id="recipeContainer"></div>
+  <header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="favorite.html">Favorites</a>
+      <a href="aboutus.html">About Us</a>
+    </nav>
+    <h1>Recipe Blogger</h1>
+  </header>
+  <div id="imageContainer">
+    <a href="american.html">American Recipes</a>
+    <a href="mexican.html">Mexican Recipes</a>
+    <a href="thai.html">Thai Recipes</a>
+<h2>American Recipes</h2>
+    <div id="recipeContainer"></div>
+   
 
-  <div id="recipeName"></div>
-  <br>
-  <ul id="recipeIng"></ul>
-  <div id="selectorRecipe">
-  </div>
-  <button id="like-button" class="btn btn-like">
-    <span class="btn-icon btn--icon-default">
-      <span class="fa fa-heart"></span>
-    </span>
-    <span class="btn-icon btn--icon-liked">
-      <span class="fa fa-heart"></span>
 
-    </span>
-    <span class="btn-content  btn-content--liked">
-      Liked
-    </span>
-    <span class="btn-content btn-content--default">
-      Like
-    </span>
-  </button>
+    <div id="recipeName"></div>
+    <br>
+    <ul id="recipeIng"></ul>
+    <div id="selectorRecipe">
+    </div>
+    <button id="like-button" class="btn btn-like">
+      <span class="btn-icon btn--icon-default">
+        <span class="fa fa-heart"></span>
+      </span>
+      <span class="btn-icon btn--icon-liked">
+        <span class="fa fa-heart"></span>
 
-  <!-- <div id="selectorRecipe"></div> -->
+      </span>
+      <span class="btn-content  btn-content--liked">
+        Liked
+      </span>
+      <span class="btn-content btn-content--default">
+        Like
+      </span>
+    </button>
 
-  <div id="formContainer"></div>
-  <ul id="commentList">
+    <!-- <div id="selectorRecipe"></div> -->
 
-  </ul>
+    <div id="formContainer"></div>
+    <ul id="commentList">
+
 
   <script src="js/app.js"></script>
   <script src="js/favorites.js"></script>
@@ -47,7 +61,14 @@
     initializeRecipies('american');
   </script>
 
-  </button>
+    </ul>
+
+    <script src="js/app.js"></script>
+    <script src="js/favorites.js"></script>
+
+
+
+    </button>
 </body>
 
 </html>

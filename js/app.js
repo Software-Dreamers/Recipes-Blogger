@@ -30,7 +30,7 @@ let submit = document.createElement('button');
 
 const likeButton = document.getElementById('like-button');
 
-function Recipe(name, ingredients, img, prepTime, cookTime, description) {
+function Recipe(name, ingredients, img, prepTime, cookTime, description, isAmerican, isMexican, isThai, isVegan = false) {
   this.name = name;
   this.ingredients = ingredients;
   this.notes = [];
@@ -39,6 +39,10 @@ function Recipe(name, ingredients, img, prepTime, cookTime, description) {
   this.prepTime = prepTime;
   this.cookTime = cookTime;
   this.isClicked = false;
+  this.isAmerican = isAmerican;
+  this.isMexican = isMexican;
+  this.isThai = isThai;
+  this.isVegan = isVegan;
   recipeArray.push(this);
 }
 
@@ -257,6 +261,7 @@ function initializeAmericanCuisine() {
 
   let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min');
 
+
   let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min', 'Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.');
 
     
@@ -275,6 +280,14 @@ function initializeMexicanCuisine() {
 function intializeThaiCuisine(){
 
 let ThaiGreenCurry = new Recipe('Thai green curry', ['Thai curry paste', 'rice', 'ginger', 'lemon grass paste', 'oil', 'fish sauce', 'basil leaves', 'vegetables', 'meat-optional'], 'img/Thai-Green-Curry.jpeg', '15 min', '40 min', 'Heat oil in a heavy based skillet or pot over medium high heat.Add curry paste (and garlic, ginger and lemongrass Extras, if using) and cook for 2 to 3 minutes until it mostly "dries out".Add chicken broth and coconut milk, mix to dissolve paste.Add 1 tsp fish sauce, 1 tsp sugar, no salt.Add 3 tsp fish sauce, 3 tsp sugar, 1/8 tsp salt.Add chicken, stir then lower heat to medium so it iss bubbling gently. Cook for 7 minutes.Add snow peas, cook 2 minutes until a bit softened, then stir through basil and lime juice. Sauce should have reduced but will still be a be on the thin side, not thick - that is how it should be. DO NOT keep simmering - sauce will darken.Serve curry over jasmine rice with garnishes of choice.');
+
+//let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt'], 'img/macNcheese.jpeg', '10 min', '45 min', 'Boil the macaroni in salted water until the noodles are al dente. Drain and transfer to a prepared baking dish.Then Melt butter, then whisk in the flour. Whisk in the milk, bring to a simmer, and stir in the cheeses. Season with salt and pepper and continue simmering until the sauce is thick. Pour the sauce over the noodles and stir.Melt two tablespoons of butter in a skillet, add the bread crumbs, and toast until the crumbs are brown. Spread the topping over the macaroni and cheese, then sprinkle with paprika.Bake in the preheated oven(350 degrees F) until the topping is golden brown.', true);
+
+
+//let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min', false);
+
+//let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min', 'Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.', false);
+
 
 
 let padThai = new Recipe('Pad Thai', ['dry pad thai noodels', '4 garlic cloves', '1 tbsp ginger', '2 eggs', 'chicken/tofu', 'peanut oil', 'fish sauce', 'rice vineger', 'soy suace'], 'img/pad-thai.jpeg', '20 min', '35 min', 'COOK NOODLES: Cook noodles according to package instructions or place rice noodles in a shallow bowl or baking dish and boil enough water to cover them. Cover with boiling water for 7- 8 minutes, until tender, then drain. They do not have to be totally soft, just bendy and pliable. Whisk the two eggs in a bowl with a fork and add a generous, 3-finger pinch of salt. Set aside.Make the Pad Thai Sauce: whisk fish sauce,  rice vinegar, brown sugar and soy sauce. Set aside.slice chicken into very thin strips and season with salt and pepper.Make a well in the center of the wok, scooting the shallot mixture to the side of the pan, add the whisked eggs.Garnish with more bean sprouts, fresh scallions, cilantro or basil, chili flakes, lime wedges');
