@@ -5,4 +5,6 @@
 let veganArray = [];
 
 
-for (i = o; i < .length; i++)
+for (i = o; i < recipeArray.length; i++) {
+    
+}
