@@ -10,36 +10,39 @@
   <title>American Recipes</title>
 </head>
 
-<body>
-  <header>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="favorite.html">Favorites</a>
-      <a href="aboutus.html">About Us</a>
-    </nav>
-    <h1>Recipe Blogger</h1>
+<body id="amerBody">
+  <header id="header">
+    <div id="topNav">
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="favorite.html">Favorites</a>
+        <a href="aboutus.html">About Us</a>
+      </nav>
+    </div>
+    <div id="mainTitle">
+      <h1>Recipe Blogger</h1>
+    </div>
   </header>
   <div id="imageContainer">
-    <a href="american.html">American Recipes</a>
-    <a href="mexican.html">Mexican Recipes</a>
-    <a href="thai.html">Thai Recipes</a>
-<h2>American Recipes</h2>
-    <div id="recipeContainer"></div>
-   
-
-
-    <div id="recipeName"></div>
-    <br>
-    <ul id="recipeIng"></ul>
-    <div id="selectorRecipe"> 
+    <div id="cuisineList">
+      <a href="american.html">American Recipes</a>
+      <a href="mexican.html">Mexican Recipes</a>
+      <a href="thai.html">Thai Recipes</a>
     </div>
+    <h2 id="cuisineTitle">American Recipes</h2>
+    <div id="recipeContainer"></div>
+    <div id="recipeName"></div>
+    <div id="recipeIngDiv">
+      <ul id="recipeIng"></ul>
+    </div>
+    <div id="selectorRecipe"></div>
+    <div id="likeButton">
       <button id="like-button" class="btn btn-like">
         <span class="btn-icon btn--icon-default">
           <span class="fa fa-heart"></span>
         </span>
         <span class="btn-icon btn--icon-liked">
           <span class="fa fa-heart"></span>
-          
         </span>
         <span class="btn-content  btn-content--liked">
           Liked
@@ -48,19 +51,18 @@
           Like
         </span>
       </button>
-      
-    <!-- <div id="selectorRecipe"></div> -->
-
-    <div id="formContainer"></div>
-    <ul id="commentList">
-
-    </ul>
-
+    </div>
+    <div id="formDiv">
+      <div id="formContainer"></div>
+      <ul id="commentList"></ul>
+    </div>
     <script src="js/american.js"></script>
     <script src="js/favorites.js"></script>
-
-
-    
+    <footer>
+      <p id="copyRight">
+        &copy; Ashwini Uppal, Shamarke Nur, and Ryan Papsin
+      </p>
+    </footer>
 </body>
 
 </html>

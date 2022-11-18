@@ -1,57 +1,293 @@
-body {
-  background-color: orange;
-  font-family: "Helvetica";
-  display: flex;
-  flex-direction: column;
-  max-width: 90%;
-  max-height: auto;
-}
-h1 {
-  font-size: 30pt;
-  font-weight: 900;
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Josefin+Sans&family=Permanent+Marker&display=swap');
 
+body {
+  background-color: navajowhite;
+  max-width: 1100px;
+  max-height: 1800px;
 }
 
 img{
-  height: 300px;
-  width:300px;
-  padding-bottom: 20px;
-  position: static;
+  position: absolute;
+  height: 400px;
+  width: 400px;
+  border: 1em solid rgba(0, 0, 0, 0.133);
+}
+
+#profilePic {
+  position: relative;
+}
+
+#profileBio {
+position: relative;
+  font-size: 20pt;
+  font-family: 'Josefin Sans', sans-serif;
+  line-height: 2;
+  left: 450px;
+  top: -450px;
+  -webkit-text-stroke: .3px whitesmoke
+}
+
+#aboutContainer {
+  max-height: 1800px;
+}
+#aboutUsDiv {
+  max-width: 800px;
+}
+
+#sharm {
+  max-height: 500px;
+}
+
+#ryan {
+  position: relative;
+  top: -300px;
+}
+
+#sharm {
+  position: relative;
+  top: -400px;
+}
+
+nav {
+  text-align: right;
+  position: relative;
+  left: 300px;
+  font-size: 15pt;
+  font-family: 'Josefin Sans', sans-serif;
+  top: 50px;
+}
+
+#mainTitle {
+  font-size: 25pt;
+  font-weight: 900;
+  text-align: center;
+  font-family: 'Abril Fatface', cursive;
+  -webkit-text-stroke: .1px white;
+}
+
+#cuisineTitle {
+  text-align: center;
+  font-size: 25pt;
+  -webkit-text-stroke: .2px white;
+}
+
+#cuisineList {
+  text-align: center;
+  font-size: 15pt;
+  font-family: 'Abril Fatface', cursive;
+  
 }
 
 
+h2 {
+  font-size: 20pt;
+  font-family: 'Abril Fatface', cursive;
+  -webkit-text-stroke: .1px white;
+}
+
+
+a {
+  padding: 1em;
+  text-decoration: none;
+  color: black;
+  -webkit-text-stroke: .2px whitesmoke;
+  font-size: larger;
+}
+
+h4 {
+position: relative;
+display: inline;
+top: 450px;
+left: 200px;
+font-size: 15pt;
+font-family: 'Abril Fatface', cursive;
+-webkit-text-stroke: .2px whitesmoke;
+}
+
+h3 {
+  position: relative;
+  top: -200px;
+  left: 450px;
+  font-family: 'Abril Fatface', cursive;
+  -webkit-text-stroke: .2px white;
+}
+
+p-description {
+  font-size: 15pt;
+  line-height: 3;
+ position: relative;
+ top: -220px;
+ left: 450px;
+ font-family: 'Josefin Sans', sans-serif;
+ -webkit-text-stroke: .5px white;
+}
+
+#recipeIng {
+  color: orangered;
+  font-size: 15pt;
+  position: relative;
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  top: 0px;
+  font-family: 'Abril Fatface', cursive;
+  -webkit-text-stroke: .5px whitesmoke;
+}
+
+ingredientHeading {
+ position: relative;
+ top: 450px;
+ left: -330px;
+ font-size: 20pt;
+ font-weight: 700;
+ font-family: 'Abril Fatface', cursive;
+ -webkit-text-stroke: .5px white;
+}
+
+ul {
+  position: relative;
+  top: 450px;
+  line-height: 2;
+  font-family: 'Josefin Sans', sans-serif;
+  -webkit-text-stroke: .5px white;
+}
+
+#likeButton {
+  position: relative;
+  top: -620px;
+  left: 300px;
+}
+
+#formContainer {
+  position: relative;
+  left: 200px;
+  top: -180px;
+}
+
+#commentBox{
+font-size: 15pt;
+font-weight: 600;
+}
+
+li::marker {
+  color: red;
+}
+
+#commentList {
+position: relative;
+top: -180px;
+left: 200px;
+list-style: circle;
+font-size: 15pt;
+font-family: 'Permanent Marker', cursive;
+}
+
+button {
+  position: relative;
+  height: 40px;
+  width: 80px;
+top: 10px;
+left: 10px;
+background-color: rgba(128, 128, 128, 0.488);
+color: white;
+}
+
+#selectorRecipe {
+  max-width: 1000px;
+}
+
+#proButton {
+  position: relative;
+  left: 270px;
+  top: 100px;
+}
+
+#meatButton {
+  height: 50px;
+background-color: rgba(220, 20, 60, 0.639);
+font-size: 15pt;
+font-family: 'Permanent Marker', cursive;
+-webkit-text-stroke: .2px white;
+}
+
+#veganButton {
+  height: 50px;
+background-color: rgba(34, 139, 34, 0.534);
+font-size: 15pt;
+font-family: 'Permanent Marker', cursive;
+-webkit-text-stroke: .2px white;
+}
+
+h1 {
+  -webkit-text-stroke: .4px white;
+}
+
+#copyRight {
+  position: relative;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 15pt;
+  -webkit-text-stroke: .4px white;
+}
+
+#indexBody {
+  background: url(../img/pexels-kristina-snowasp-9986228.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#amerBody {
+  background: url(../img/pexels-cottonbro-studio-3298641.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#thaiBody{
+background: url(../img/pexels-anna-tarazevich-6937447.jpg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+
+#mexBody {
+  background: url(../img/pexels-rachel-claire-6126975.jpg) ;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#favBody {
+  background: url(../img/pexels-ketut-subiyanto-4827131.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#aboutBody {
+  background: url(../img/pexels-маргарита-колван-8484472.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#meatBody {
+  background: url(../img/pexels-cottonbro-studio-3298633.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#veganBody {
+  background: url(../img/pexels-kristina-snowasp-9986228.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+#indexFoot {
+  position: relative;
+  top: 400px;
+}
+/* ===== Project CSS ===== */
 :root {
   --red: rgb(209, 3, 3);
   --white: #fff;
   --black: #000;
 }
-
-
-.container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.wrapper {
-  max-width: 600px;
-  height: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.project-header {
-  position: absolute;
-  top: 0;
-  background: rgb(180,58,116);
-  background: linear-gradient(90deg, rgba(180,58,116,1) 0%, rgba(253,29,29,1) 50%, rgba(252,139,69,1) 100%);    width: 100%;
-  text-align: center;
-  color: var(--white);
-}
-
-/* ===== Project CSS ===== */
 .btn {
   width: 100px; height: 40px;
   outline: 0;
@@ -72,7 +308,7 @@ img{
 }
 
 .btn-like {
-  /*padding: 1.5rem 1.5rem 1.5rem 6rem;*/
+
   font-size: 2rem;
   border-radius: 10px;
   background: #fff;
@@ -115,14 +351,13 @@ img{
 .liked .btn--icon-liked {
   opacity: 1;
   left: 1.5rem;
-}
+} */
 
 /*-- Button Content -- */
 .btn-content {
   transition: transform 0.1s ease;
   display: inline-block;
-  /* position: absolute;
-  right: 0; */
+
 }
 .liked .btn-content {
   color: var(--white);
@@ -139,41 +374,3 @@ img{
 .liked .btn-content--default {
   transform: translate(24px)
 }
-
-/* #like-button {
-  position: relative;
-  bottom: 770px;
-  left: 200px;
-  
-} */
-h3 {
-  position: relative;
-  bottom: 600px;
-  left: 350px;
-}
-p-description {
-  position: relative;
-  bottom: 600px;
-  left: 350px;
-  line-height: 2;
-  padding-right: 40px;
-}
-
-#selectorRecipe {
-  max-width: 450px;
-
-}
-button{
-position: relative;
-bottom: 600px;
-left: 300px;
-width: 50px;
-height: 50px;
-}
-#commentBox {
-  position: relative;
-  bottom: 600px;
-  left: 300px;
-}
-
-

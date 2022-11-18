@@ -114,6 +114,7 @@ function handleRecipeClick(event) {
   // selectorRecipe.appendChild(imgElem);
 
   let prepTime = document.createElement('h4');
+  prepTime.id.add = ('time');
   prepTime.innerHTML = 'Prep Time: ' + selectedRecipe.prepTime;
   selectorRecipe.appendChild(prepTime);
 
@@ -148,6 +149,7 @@ function handleRecipeClick(event) {
 
   let displayButton = document.createElement('button');
   displayButton.textContent = likeButton.isClicked;
+
 
   //todo keep
   let retrievedNotes = localStorage.getItem('myNotes');
@@ -216,6 +218,7 @@ function handleRecipeClick(event) {
   let recipeDescription = document.createElement('h3');
   recipeDescription.innerHTML = 'Procedure';
   selectorRecipe.appendChild(recipeDescription);
+  recipeDescription.classList.add('procedure');
 
   let pElem = document.createElement('p-description');
   pElem.textContent = selectedRecipe.description;
@@ -239,7 +242,7 @@ let mac = new Recipe('Mac & Cheese', ['Pasta', 'Cheese', 'Milk', 'Butter', 'Salt
 
 
 let burger = new Recipe('Cheese Burger', ['Bun', 'Patty', 'Cheese', 'Tomato', 'Ketchup', 'Mustard', 'Pickle', 'Lettuce'], 'img/cheese-burger.jpeg', '15 min', '40 min', 'tbd', true, false, false, false, true);
-console.log(burger);
+// console.log(burger);
 
 let barbequreRibs = new Recipe('Barbeque Ribs', ['1 rack baby back ribs', '2 Tbsp olive oil', '2 tsp salt', '2 tsp garlic powder', '2 tsp paprika', '1 tsp onion powder', '1 tsp black pepper', 'BBQ sauce'], 'img/ribs.jpeg', '15 min', '20 min', 'Preheat oven to 275°F.Pat ribs dry with a paper towel. Rub on olive oil. Combine dry spices, then rub all over ribs.Wrap ribs in foil, then place on baking sheet. Bake 4 hours, or until the ribs are fork tender.Open foil. Slather BBQ sauce all over ribs, then bake uncovered another 15 minutes. If desired, broil for a few minutes at the end to caramelize the sauce.Allow to rest for 10 minutes before cutting.', true, false, false, false, true);
 
