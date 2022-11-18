@@ -1,22 +1,7 @@
-body {
-  background-color: orange;
-  font-family: "Helvetica";
-  display: flex;
-  flex-direction: column;
-  max-width: 90%;
-  max-height: auto;
-}
-h1 {
-  font-size: 30pt;
-  font-weight: 900;
-
-}
-
 img{
   height: 300px;
   width:300px;
   padding-bottom: 20px;
-  position: static;
 }
 
 
@@ -26,7 +11,10 @@ img{
   --black: #000;
 }
 
-
+body {
+  font-family: "Helvetica";
+  background: #e9e9e9
+}
 .container {
   width: 100vw;
   height: 100vh;
@@ -53,7 +41,7 @@ img{
 
 /* ===== Project CSS ===== */
 .btn {
-  width: 100px; height: 40px;
+  width: 200px; height: 88px;
   outline: 0;
   border: 2px solid #ccc;
   color: #000;
@@ -72,7 +60,7 @@ img{
 }
 
 .btn-like {
-  /*padding: 1.5rem 1.5rem 1.5rem 6rem;*/
+  padding: 1.5rem 1.5rem 1.5rem 6rem;
   font-size: 2rem;
   border-radius: 10px;
   background: #fff;
@@ -139,41 +127,3 @@ img{
 .liked .btn-content--default {
   transform: translate(24px)
 }
-
-/* #like-button {
-  position: relative;
-  bottom: 770px;
-  left: 200px;
-  
-} */
-h3 {
-  position: relative;
-  bottom: 600px;
-  left: 350px;
-}
-p-description {
-  position: relative;
-  bottom: 600px;
-  left: 350px;
-  line-height: 2;
-  padding-right: 40px;
-}
-
-#selectorRecipe {
-  max-width: 450px;
-
-}
-button{
-position: relative;
-bottom: 600px;
-left: 300px;
-width: 50px;
-height: 50px;
-}
-#commentBox {
-  position: relative;
-  bottom: 600px;
-  left: 300px;
-}
-
-
